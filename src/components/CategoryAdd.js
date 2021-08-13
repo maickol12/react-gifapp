@@ -9,17 +9,19 @@ const CategoryAdd = ({ setCategory }) => {
         setInputValue(e.target.value);
     }
     const handleSubmit = (e) => {
-        if( inputValue.trim().length > 2 ){
-            setCategory(inputValue);
-        }
         e.preventDefault();
+        if( inputValue.trim().length > 2 ){
+            setCategory( value => [inputValue, ...value]);
+            setInputValue('')
+        }
     }
     return(
         <div>
             <form onSubmit={handleSubmit}>
+                <p>{ inputValue }</p>
                 <input
                     type="text"
-                    value={inputValue}
+                    value={ inputValue }
                     onChange={ handleInputChange } />
                 
             </form>
